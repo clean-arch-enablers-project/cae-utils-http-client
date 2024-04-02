@@ -66,6 +66,4 @@ Simple, isn't it?
 
 With only 12 lines of code the request was defined with path variable, query parameter, HTTP header, handler in case of 404 responses, handler in case of any response different than 2xx and 404 specifically, retry-policy in case of IOException, retry-policy in case of 503 responses and the output mapping.
 
-All you got to do is to declare the dependency and use the library API.
-
-Feel free to explore all the possibilities!
+All you got to do is to declare the dependency and use the library API. Feel free to explore all the features!
