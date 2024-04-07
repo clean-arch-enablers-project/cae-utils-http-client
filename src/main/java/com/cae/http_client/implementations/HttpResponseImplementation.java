@@ -1,8 +1,8 @@
 package com.cae.http_client.implementations;
 
-import com.cae.http_client.implementations.exceptions.JsonProcessingRuntimeException;
 import com.cae.http_client.HttpRequestModel;
 import com.cae.http_client.HttpResponse;
+import com.cae.http_client.implementations.exceptions.JsonProcessingRuntimeException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 

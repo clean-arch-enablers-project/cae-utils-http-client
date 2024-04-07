@@ -1,7 +1,6 @@
 package com.cae.http_client.implementations;
 
 import com.cae.http_client.*;
-import com.clean_arch_enablers.http_client.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

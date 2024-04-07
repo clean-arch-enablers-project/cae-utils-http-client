@@ -1,9 +1,9 @@
 package com.cae.http_client.implementations;
 
-import com.cae.http_client.implementations.exceptions.NoResponseHandlersAvailableForExecutionException;
-import com.cae.http_client.implementations.exceptions.RetryNeededOnHttpStatusCodeException;
 import com.cae.http_client.HttpResponse;
 import com.cae.http_client.HttpResponseHandler;
+import com.cae.http_client.implementations.exceptions.NoResponseHandlersAvailableForExecutionException;
+import com.cae.http_client.implementations.exceptions.RetryNeededOnHttpStatusCodeException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 

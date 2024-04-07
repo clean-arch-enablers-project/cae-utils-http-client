@@ -1,8 +1,8 @@
 package com.cae.http_client.implementations;
 
+import com.cae.http_client.HttpResponse;
 import com.cae.http_client.implementations.exceptions.RetryNeededOnExceptionThrownException;
 import com.cae.http_client.implementations.exceptions.RetryNeededOnHttpStatusCodeException;
-import com.cae.http_client.HttpResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

@@ -2,7 +2,6 @@ package com.cae.http_client.implementations;
 
 
 import com.cae.http_client.*;
-import com.clean_arch_enablers.http_client.*;
 import com.cae.http_client.commons.RetriersByExceptionTypeFactory;
 
 public class HttpRequestBuilderImplementation extends AbstractHttpRequestBuilder {
