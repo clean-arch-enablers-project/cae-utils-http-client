@@ -1,5 +1,5 @@
-# Welcome to the _cae-utils-http-client_ repository!
-The _cae-utils-http-client_ is a standalone library: you can use it in whatever application architecture you choose, with whatever framework of your preference. This is the part of the CAE ecosystem designed to enable you to build REST API calls at your Adapters layer without having to compromise the whole application architecture getting coupled to some framework or library.
+# ☕cae-utils-http-client
+Welcome to the _cae-utils-http-client_ repository! The _cae-utils-http-client_ is a standalone library: you can use it in whatever application architecture you choose, with whatever framework of your preference. This is the part of the CAE ecosystem designed to enable you to build REST API calls at your Adapters layer without having to compromise the whole application architecture getting coupled to some framework or library.
 
 It is very simple to use the HTTP Client from CAE. Take a look:
 
