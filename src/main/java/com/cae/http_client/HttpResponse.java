@@ -2,6 +2,8 @@ package com.cae.http_client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public interface HttpResponse{
@@ -45,4 +47,9 @@ public interface HttpResponse{
      * @param checkOnResponse the action to be executed in case of needing handling
      */
     void ifNeedsHandling(Consumer<HttpResponse> checkOnResponse);
+
+    /**
+     * @return the response headers
+     */
+    Map<String, List<String>> getHeaders();
 }

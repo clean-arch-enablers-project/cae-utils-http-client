@@ -1,6 +1,7 @@
 package com.cae.http_client.implementations;
 
 import com.cae.http_client.HttpRequestMethod;
+import com.cae.http_client.HttpResponse;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,11 @@ public class HttpRequestModelImplementation extends AbstractHttpRequestModel {
         httpRequest.method = method;
         httpRequest.body = body;
         return httpRequest;
+    }
+
+    @Override
+    public HttpResponse sendRequest() {
+        return HttpRequestExecutionManager.of(this).run();
     }
 
     @Override

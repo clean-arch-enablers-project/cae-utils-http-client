@@ -6,6 +6,11 @@ import com.cae.http_client.implementations.exceptions.JsonProcessingRuntimeExcep
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.net.http.HttpHeaders;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class HttpResponseImplementation extends AbstractHttpResponse{
@@ -51,6 +56,13 @@ public class HttpResponseImplementation extends AbstractHttpResponse{
     public void ifNeedsHandling(Consumer<HttpResponse> checkOnResponse) {
         if (this.needsHandling())
             checkOnResponse.accept(this);
+    }
+
+    @Override
+    public Map<String, List<String>> getHeaders() {
+        return Optional.ofNullable(this.unwrappedHttpResponse.headers())
+                .map(HttpHeaders::map)
+                .orElse(new HashMap<>());
     }
 
     private boolean isNot2xx() {
