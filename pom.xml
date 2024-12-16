@@ -7,8 +7,8 @@
     <description>Meant for enabling applications to use HTTP at ease, without having to compromise the clean state of the overall architecture.</description>
     <url>https://github.com/clean-arch-enablers-project/cae-utils-http-client/blob/main/README.md</url>
     <groupId>com.clean-arch-enablers</groupId>
-    <artifactId>http-client</artifactId>
-    <version>1.1.1</version>
+    <artifactId>cae-http-client</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <licenses>
         <license>
