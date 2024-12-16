@@ -11,7 +11,7 @@ Welcome to the _cae-utils-http-client_ repository! The _cae-utils-http-client_ i
 
 <dependency>
   <groupId>com.clean-arch-enablers</groupId>
-  <artifactId>http-client</artifactId>
+  <artifactId>cae-http-client</artifactId>
   <version>${version}</version>
 </dependency>
 
