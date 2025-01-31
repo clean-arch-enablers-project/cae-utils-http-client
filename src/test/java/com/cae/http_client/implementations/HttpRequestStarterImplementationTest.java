@@ -38,4 +38,11 @@ class HttpRequestStarterImplementationTest {
         Assertions.assertNotNull(this.httpRequestStarter.startPutRequestFor("http://localhost:2222", HttpRequest.BodyPublishers.ofString("{someRandomJsonField: \"someRandomValue\"}")));
     }
 
+    @Test
+    @DisplayName("Should return non null instance of builder when starting for patch method")
+    void shouldReturnNonNullInstanceOfBuilderWhenStartingForPatchMethod(){
+        Assertions.assertNotNull(this.httpRequestStarter.startPatchRequestFor("http://localhost:2222", HttpRequest.BodyPublishers.ofString("{someRandomJsonField: \"someRandomValue\"}")));
+    }
+
+
 }
