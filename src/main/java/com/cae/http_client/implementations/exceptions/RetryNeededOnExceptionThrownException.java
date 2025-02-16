@@ -3,7 +3,7 @@ package com.cae.http_client.implementations.exceptions;
 import lombok.Getter;
 
 @Getter
-public class RetryNeededOnExceptionThrownException extends RuntimeException{
+class RetryNeededOnExceptionThrownException extends RuntimeException{
 
     private final Class<? extends Exception> exceptionType;
 

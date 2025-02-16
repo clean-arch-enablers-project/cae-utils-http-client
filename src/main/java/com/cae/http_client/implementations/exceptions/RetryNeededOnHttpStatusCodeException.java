@@ -4,7 +4,7 @@ import com.cae.http_client.HttpResponse;
 import lombok.Getter;
 
 @Getter
-public class RetryNeededOnHttpStatusCodeException extends RuntimeException{
+class RetryNeededOnHttpStatusCodeException extends RuntimeException{
 
     private final HttpResponse httpResponse;
 

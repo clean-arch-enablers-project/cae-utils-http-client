@@ -1,8 +1,6 @@
 package com.cae.http_client.implementations;
 
 import com.cae.http_client.HttpResponse;
-import com.cae.http_client.implementations.exceptions.RetryNeededOnExceptionThrownException;
-import com.cae.http_client.implementations.exceptions.RetryNeededOnHttpStatusCodeException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -18,13 +16,9 @@ class HttpRequestExecutionManager {
     }
 
     protected HttpResponse run() {
-        try {
-            var response = this.httpRequest.method.execute(this.httpRequest);
-            response.ifNeedsHandling(HttpResponseStatusCodeChecker.of(this.httpRequest)::checkOutHandlersFor);
-            return response;
-        } catch (RetryNeededOnHttpStatusCodeException | RetryNeededOnExceptionThrownException exception) {
-            return this.run();
-        }
+        var response = this.httpRequest.method.execute(this.httpRequest);
+        response.ifNeedsHandling(HttpResponseStatusCodeChecker.of(this.httpRequest)::checkOutHandlersFor);
+        return response;
     }
 
 }

@@ -4,5 +4,5 @@ import com.cae.http_client.commons.RetriersFactory;
 
 import java.util.Map;
 
-public interface RetriersByStatusCodeFactory extends RetriersFactory<Map<Integer, RetrierModel>> {
+interface RetriersByStatusCodeFactory extends RetriersFactory<Map<Integer, RetrierModel>> {
 }
