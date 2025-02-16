@@ -7,6 +7,7 @@ public interface HttpRequestStarter {
     HttpRequestBuilder startGetRequestFor(String url);
     HttpRequestBuilder startPostRequestFor(String url, HttpRequest.BodyPublisher body);
     HttpRequestBuilder startPutRequestFor(String url, HttpRequest.BodyPublisher body);
+    HttpRequestBuilder startPatchRequestFor(String url, HttpRequest.BodyPublisher body);
     HttpRequestBuilder startDeleteRequestFor(String url);
 
 }

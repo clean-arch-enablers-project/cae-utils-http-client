@@ -26,6 +26,11 @@ public class FinalHttpRequestFactory {
         return finallyBuildIt(finalHttpRequestBuilder, httpRequestModel);
     }
 
+    public static HttpRequest makeFinalRequestForPatchMethodFrom(AbstractHttpRequestModel httpRequestModel) {
+        var finalHttpRequestBuilder = HttpRequest.newBuilder().method("PATCH", httpRequestModel.body);
+        return finallyBuildIt(finalHttpRequestBuilder, httpRequestModel);
+    }
+
     public static HttpRequest makeFinalRequestForDeleteMethodFrom(AbstractHttpRequestModel httpRequestModel) {
         var finalHttpRequestBuilder = HttpRequest.newBuilder().DELETE();
         return finallyBuildIt(finalHttpRequestBuilder, httpRequestModel);

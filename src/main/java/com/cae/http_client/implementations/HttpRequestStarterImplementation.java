@@ -24,6 +24,11 @@ public class HttpRequestStarterImplementation implements HttpRequestStarter {
     }
 
     @Override
+    public HttpRequestBuilder startPatchRequestFor(String url, HttpRequest.BodyPublisher body) {
+        return HttpRequestBuilderImplementation.of(HttpRequestModelImplementation.of(url, new HttpRequestPatchMethod(), body));
+    }
+
+    @Override
     public HttpRequestBuilder startDeleteRequestFor(String url) {
         return HttpRequestBuilderImplementation.of(HttpRequestModelImplementation.of(url, new HttpRequestDeleteMethod()));
     }
