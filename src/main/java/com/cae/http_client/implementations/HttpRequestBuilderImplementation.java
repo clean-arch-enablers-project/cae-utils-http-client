@@ -2,7 +2,6 @@ package com.cae.http_client.implementations;
 
 
 import com.cae.http_client.*;
-import com.cae.http_client.commons.RetriersByExceptionTypeFactory;
 
 public class HttpRequestBuilderImplementation extends AbstractHttpRequestBuilder {
 
@@ -45,7 +44,7 @@ public class HttpRequestBuilderImplementation extends AbstractHttpRequestBuilder
     }
 
     @Override
-    public HttpRequestModel finishBuildingModel() {
+    public HttpRequestModel buildRequestModel() {
         return this.httpRequest;
     }
 
@@ -79,27 +78,4 @@ public class HttpRequestBuilderImplementation extends AbstractHttpRequestBuilder
         return this;
     }
 
-    @Override
-    public HttpRequestBuilder retrierByHttpStatusCode(Integer statusCode, RetrierModel retrierModel) {
-        this.httpRequest.retryCountersByStatusCode.put(statusCode, RetryCounterImplementation.of(retrierModel));
-        return this;
-    }
-
-    @Override
-    public HttpRequestBuilder retriersByHttpStatusCodeFactory(RetriersByStatusCodeFactory retriersByStatusCodeFactory) {
-        retriersByStatusCodeFactory.makeRetriers().forEach((statusCode, retrierModel) -> this.httpRequest.retryCountersByStatusCode.put(statusCode, RetryCounterImplementation.of(retrierModel)));
-        return this;
-    }
-
-    @Override
-    public HttpRequestBuilder retrierByExceptionType(Class<? extends Exception> exceptionType, RetrierModel retrierModel) {
-        this.httpRequest.retryCountersByExceptionType.put(exceptionType, RetryCounterImplementation.of(retrierModel));
-        return this;
-    }
-
-    @Override
-    public HttpRequestBuilder retriersByExceptionTypeFactory(RetriersByExceptionTypeFactory retriersByExceptionTypeFactory) {
-        retriersByExceptionTypeFactory.makeRetriers().forEach((exceptionType, retrierModel) -> this.httpRequest.retryCountersByExceptionType.put(exceptionType, RetryCounterImplementation.of(retrierModel)));
-        return this;
-    }
 }

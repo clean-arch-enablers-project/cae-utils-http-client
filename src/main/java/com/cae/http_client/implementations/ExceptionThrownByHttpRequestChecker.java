@@ -1,6 +1,5 @@
 package com.cae.http_client.implementations;
 
-import com.cae.http_client.implementations.exceptions.RetryNeededOnExceptionThrownException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -16,11 +15,6 @@ public class ExceptionThrownByHttpRequestChecker {
     }
 
     public void checkOn(Exception e) {
-        var retryCounterByExceptionType = ofNullable(this.httpRequestModel.retryCountersByExceptionType.get(e.getClass()));
-        if (retryCounterByExceptionType.isPresent() && retryCounterByExceptionType.get().thereIsRetryAvailable()) {
-            retryCounterByExceptionType.get().decreaseRetriesAvailable();
-            throw new RetryNeededOnExceptionThrownException(e.getClass());
-        }
         var handlerByThisException = ofNullable(this.httpRequestModel.exceptionHandlersByExceptionType.get(e.getClass()));
         handlerByThisException.ifPresent(handler -> handler.handle(e));
     }

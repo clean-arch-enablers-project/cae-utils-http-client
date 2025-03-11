@@ -5,12 +5,12 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class CaeHttpClientFactory {
+public class CaeHttpClient {
 
     public static final HttpRequestStarter REQUEST_STARTER = new HttpRequestStarterImplementation();
 
-    public static HttpRequestStarter getSingletonClient(){
-        return CaeHttpClientFactory.REQUEST_STARTER;
+    public static HttpRequestStarter getStarter(){
+        return CaeHttpClient.REQUEST_STARTER;
     }
 
 }

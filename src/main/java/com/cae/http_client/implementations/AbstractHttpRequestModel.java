@@ -20,7 +20,5 @@ public abstract class AbstractHttpRequestModel implements HttpRequestModel {
     protected HttpResponseHandler genericResponseHandler;
     protected final Map<Integer, HttpResponseHandler> responseHandlersByStatusCode = new HashMap<>();
     protected final Map<Class<? extends Exception>, ExceptionHandler> exceptionHandlersByExceptionType = new HashMap<>();
-    protected final Map<Integer, RetryCounter> retryCountersByStatusCode = new HashMap<>();
-    protected final Map<Class<? extends Exception>, RetryCounter> retryCountersByExceptionType = new HashMap<>();
 
 }

@@ -118,7 +118,7 @@ class HttpRequestBuilderImplementationTest {
     void shouldFinishBuildingProcessReturningRequestModelInstance(){
         var request = HttpRequestModelImplementation.of("http://localhost:8080/users", new HttpRequestGetMethod());
         var builder = HttpRequestBuilderImplementation.of(request);
-        var resultFromBuilding = builder.finishBuildingModel();
+        var resultFromBuilding = builder.buildRequestModel();
         Assertions.assertNotNull(resultFromBuilding);
         Assertions.assertEquals(request, resultFromBuilding);
     }
@@ -231,54 +231,6 @@ class HttpRequestBuilderImplementationTest {
         Assertions.assertEquals(builder, returnedBuilder);
     }
 
-    @Test
-    @DisplayName("Should add retrier by status code correctly")
-    void shouldAddRetrierByHttpStatusCodeCorrectly(){
-        var request = HttpRequestModelImplementation.of("http://localhost:8080/users", new HttpRequestGetMethod());
-        var builder = HttpRequestBuilderImplementation.of(request);
-        var retrier = RetrierModel.withLimitOf(4);
-        var statusCode = 503;
-        builder.retrierByHttpStatusCode(statusCode, retrier);
-        Assertions.assertFalse(request.retryCountersByStatusCode.isEmpty());
-        Assertions.assertTrue(request.retryCountersByStatusCode.get(statusCode).thereIsRetryAvailable());
-    }
-
-    @Test
-    @DisplayName("Should return builder instance when finishing method of adding retrier by status code")
-    void shouldReturnBuilderInstanceWhenFinishingMethodOfAddingRetrierByHttpStatusCode(){
-        var request = HttpRequestModelImplementation.of("http://localhost:8080/users", new HttpRequestGetMethod());
-        var builder = HttpRequestBuilderImplementation.of(request);
-        var retrier = RetrierModel.withLimitOf(4);
-        var statusCode = 503;
-        var returnedBuilder = builder.retrierByHttpStatusCode(statusCode, retrier);
-        Assertions.assertNotNull(returnedBuilder);
-        Assertions.assertEquals(builder, returnedBuilder);
-    }
-
-    @Test
-    @DisplayName("Should add retrier by exception type correctly")
-    void shouldAddRetrierByExceptionTypeCorrectly(){
-        var request = HttpRequestModelImplementation.of("http://localhost:8080/users", new HttpRequestGetMethod());
-        var builder = HttpRequestBuilderImplementation.of(request);
-        var retrier = RetrierModel.withLimitOf(4);
-        var exceptionType = RuntimeException.class;
-        builder.retrierByExceptionType(exceptionType, retrier);
-        Assertions.assertFalse(request.retryCountersByExceptionType.isEmpty());
-        Assertions.assertTrue(request.retryCountersByExceptionType.get(exceptionType).thereIsRetryAvailable());
-    }
-
-    @Test
-    @DisplayName("Should return builder instance when finishing method of adding retrier by exception type")
-    void shouldReturnBuilderInstanceWhenFinishingMethodOfAddingRetrierByExceptionType(){
-        var request = HttpRequestModelImplementation.of("http://localhost:8080/users", new HttpRequestGetMethod());
-        var builder = HttpRequestBuilderImplementation.of(request);
-        var retrier = RetrierModel.withLimitOf(4);
-        var exceptionType = RuntimeException.class;
-        var returnedBuilder = builder.retrierByExceptionType(exceptionType, retrier);
-        Assertions.assertNotNull(returnedBuilder);
-        Assertions.assertEquals(builder, returnedBuilder);
-    }
-
     private static class HttpExceptionHandlersByExceptionTypeFactoryForTestingMatters implements HttpExceptionHandlersByExceptionTypeFactory {
 
         static final Class<? extends Exception> KEY_1 = RuntimeException.class;
@@ -314,45 +266,6 @@ class HttpRequestBuilderImplementationTest {
         var request = HttpRequestModelImplementation.of("http://localhost:8080/users", new HttpRequestGetMethod());
         var builder = HttpRequestBuilderImplementation.of(request);
         var returnedBuilder = builder.handlersByExceptionTypeFactory(new HttpExceptionHandlersByExceptionTypeFactoryForTestingMatters());
-        Assertions.assertNotNull(returnedBuilder);
-        Assertions.assertEquals(builder, returnedBuilder);
-    }
-
-    private static class RetriersByStatusCodeFactoryForTestingMatters implements RetriersByStatusCodeFactory {
-
-        static final Integer KEY_1 = 400;
-        static final Integer KEY_2 = 401;
-        static final Integer KEY_3 = 403;
-
-
-        @Override
-        public Map<Integer, RetrierModel> makeRetriers() {
-            var retriers = new HashMap<Integer, RetrierModel>();
-            retriers.put(KEY_1, RetrierModel.withLimitOf(4));
-            retriers.put(KEY_2, RetrierModel.withLimitOf(8));
-            retriers.put(KEY_3, RetrierModel.withLimitOf(16));
-            return retriers;
-        }
-    }
-
-    @Test
-    @DisplayName("Should add retriers by status code factory correctly")
-    void shouldAddRetriersByStatusCodeFactoryCorrectly(){
-        var request = HttpRequestModelImplementation.of("http://localhost:8080/users", new HttpRequestGetMethod());
-        var builder = HttpRequestBuilderImplementation.of(request);
-        builder.retriersByHttpStatusCodeFactory(new RetriersByStatusCodeFactoryForTestingMatters());
-        Arrays.asList(RetriersByStatusCodeFactoryForTestingMatters.KEY_1,
-                RetriersByStatusCodeFactoryForTestingMatters.KEY_2,
-                RetriersByStatusCodeFactoryForTestingMatters.KEY_3)
-                .forEach(key -> Assertions.assertNotNull(request.retryCountersByStatusCode.get(key)));
-    }
-
-    @Test
-    @DisplayName("Should return builder instance when finishing method of adding retriers by status code factory")
-    void shouldReturnBuilderInstanceWhenFinishingMethodOfAddingRetriersByStatusCodeFactory(){
-        var request = HttpRequestModelImplementation.of("http://localhost:8080/users", new HttpRequestGetMethod());
-        var builder = HttpRequestBuilderImplementation.of(request);
-        var returnedBuilder = builder.retriersByHttpStatusCodeFactory(new RetriersByStatusCodeFactoryForTestingMatters());
         Assertions.assertNotNull(returnedBuilder);
         Assertions.assertEquals(builder, returnedBuilder);
     }

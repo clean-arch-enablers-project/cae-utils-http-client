@@ -6,27 +6,27 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class CaeHttpClientFactoryTest {
+class CaeHttpClientTest {
 
     @Test
     void shouldReturnFilledInstance(){
-        Assertions.assertNotNull(CaeHttpClientFactory.REQUEST_STARTER);
+        Assertions.assertNotNull(CaeHttpClient.REQUEST_STARTER);
     }
 
     @Test
     void shouldReturnSingletonInstanceWhenDirectlyCallingAttribute(){
-        var resultFromCallOne = CaeHttpClientFactory.REQUEST_STARTER;
-        var resultFromCallTwo = CaeHttpClientFactory.REQUEST_STARTER;
-        var resultFromCallThree = CaeHttpClientFactory.REQUEST_STARTER;
+        var resultFromCallOne = CaeHttpClient.REQUEST_STARTER;
+        var resultFromCallTwo = CaeHttpClient.REQUEST_STARTER;
+        var resultFromCallThree = CaeHttpClient.REQUEST_STARTER;
         Assertions.assertEquals(resultFromCallOne, resultFromCallTwo);
         Assertions.assertEquals(resultFromCallTwo, resultFromCallThree);
     }
 
     @Test
     void shouldReturnSingletonInstanceWhenCallingGetter(){
-        var resultFromCallOne = CaeHttpClientFactory.getSingletonClient();
-        var resultFromCallTwo = CaeHttpClientFactory.getSingletonClient();
-        var resultFromCallThree = CaeHttpClientFactory.getSingletonClient();
+        var resultFromCallOne = CaeHttpClient.getStarter();
+        var resultFromCallTwo = CaeHttpClient.getStarter();
+        var resultFromCallThree = CaeHttpClient.getStarter();
         Assertions.assertEquals(resultFromCallOne, resultFromCallTwo);
         Assertions.assertEquals(resultFromCallTwo, resultFromCallThree);
     }
