@@ -44,6 +44,12 @@ public class HttpRequestBuilderImplementation extends AbstractHttpRequestBuilder
     }
 
     @Override
+    public HttpRequestBuilder bypassSsl() {
+        this.httpRequest.bypassSsl = true;
+        return this;
+    }
+
+    @Override
     public HttpRequestModel buildRequestModel() {
         return this.httpRequest;
     }

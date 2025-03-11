@@ -17,6 +17,7 @@ public abstract class AbstractHttpRequestModel implements HttpRequestModel {
     protected BodyPublisher body;
     protected HttpRequestMethod method;
     protected ProxyAddressModel proxyAddress;
+    protected Boolean bypassSsl = false;
     protected HttpResponseHandler genericResponseHandler;
     protected final Map<Integer, HttpResponseHandler> responseHandlersByStatusCode = new HashMap<>();
     protected final Map<Class<? extends Exception>, ExceptionHandler> exceptionHandlersByExceptionType = new HashMap<>();
