@@ -37,7 +37,27 @@ public class FinalHttpRequestExecutor {
 
     private HttpClient createClient() {
         var client = HttpClient.newBuilder();
-        Optional.ofNullable(this.httpRequestModel.proxyAddress).ifPresent(proxyAddress -> client.proxy(ProxySelector.of(new InetSocketAddress(proxyAddress.getHost(), proxyAddress.getPort()))));
+        this.handleProxySettings(client);
+        this.handleSslByPass(client);
         return client.build();
     }
+
+    private void handleProxySettings(HttpClient.Builder client) {
+        Optional.ofNullable(this.httpRequestModel.proxyAddress).ifPresent(
+                proxyAddress -> client.proxy(
+                        ProxySelector.of(
+                                new InetSocketAddress(
+                                        proxyAddress.getHost(),
+                                        proxyAddress.getPort()
+                                )
+                        )
+                )
+        );
+    }
+
+    private void handleSslByPass(HttpClient.Builder client) {
+        if (this.httpRequestModel.bypassSsl)
+            client.sslContext(SSLBypassSettings.getContext());
+    }
+
 }
