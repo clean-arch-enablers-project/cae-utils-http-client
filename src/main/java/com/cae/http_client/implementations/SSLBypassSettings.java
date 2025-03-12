@@ -4,8 +4,10 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLEngine;
 import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import javax.net.ssl.X509ExtendedTrustManager;
+import java.net.Socket;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -33,17 +35,43 @@ public class SSLBypassSettings {
         }
     }
 
-    public static class CustomTrustManager implements X509TrustManager{
+    public static class CustomTrustManager extends X509ExtendedTrustManager {
+
+        public static final String BYPASS_MESSAGE = "Bypassing SSL verifications";
 
         @Override
-        public void checkClientTrusted(X509Certificate[] certs, String authType) {}
+        public void checkClientTrusted(X509Certificate[] certs, String authType) {
+            System.out.println(BYPASS_MESSAGE);
+        }
 
         @Override
-        public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+        public void checkServerTrusted(X509Certificate[] certs, String authType) {
+            System.out.println(BYPASS_MESSAGE);
+        }
 
         @Override
         public X509Certificate[] getAcceptedIssuers() {
             return new X509Certificate[0];
+        }
+
+        @Override
+        public void checkClientTrusted(X509Certificate[] chain, String authType, Socket socket) {
+            System.out.println(BYPASS_MESSAGE);
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] chain, String authType, Socket socket) {
+            System.out.println(BYPASS_MESSAGE);
+        }
+
+        @Override
+        public void checkClientTrusted(X509Certificate[] chain, String authType, SSLEngine engine) {
+            System.out.println(BYPASS_MESSAGE);
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] chain, String authType, SSLEngine engine) {
+            System.out.println(BYPASS_MESSAGE);
         }
     }
 
