@@ -50,6 +50,12 @@ public class HttpRequestBuilderImplementation extends AbstractHttpRequestBuilder
     }
 
     @Override
+    public HttpRequestBuilder bypassDomainCheck() {
+        this.httpRequest.bypassDomainCheck = true;
+        return this;
+    }
+
+    @Override
     public HttpRequestModel buildRequestModel() {
         return this.httpRequest;
     }

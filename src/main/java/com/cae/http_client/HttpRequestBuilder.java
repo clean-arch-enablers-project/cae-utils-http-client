@@ -8,6 +8,7 @@ public interface HttpRequestBuilder extends HttpRequestBuilderForHandlers{
     HttpRequestBuilder queryParameterOf(String queryParameterName, String queryParameterValue);
     HttpRequestBuilder proxyAddress(String host, Integer port);
     HttpRequestBuilder bypassSsl();
+    HttpRequestBuilder bypassDomainCheck();
     HttpRequestModel buildRequestModel();
 
 }

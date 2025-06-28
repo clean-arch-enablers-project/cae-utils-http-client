@@ -5,6 +5,7 @@ import com.cae.http_client.implementations.exceptions.InterruptedRuntimeExceptio
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import javax.net.ssl.SSLParameters;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ProxySelector;
@@ -38,7 +39,8 @@ public class FinalHttpRequestExecutor {
     private HttpClient createClient() {
         var client = HttpClient.newBuilder();
         this.handleProxySettings(client);
-        this.handleSslByPass(client);
+        this.handleSslBypass(client);
+        this.handleDomainCheckBypass(client);
         return client.build();
     }
 
@@ -55,9 +57,18 @@ public class FinalHttpRequestExecutor {
         );
     }
 
-    private void handleSslByPass(HttpClient.Builder client) {
+    private void handleSslBypass(HttpClient.Builder client) {
         if (this.httpRequestModel.bypassSsl)
             client.sslContext(SSLBypassSettings.getContext());
     }
+
+    private void handleDomainCheckBypass(HttpClient.Builder client) {
+        if (this.httpRequestModel.bypassDomainCheck){
+            var sslParameters = new SSLParameters();
+            DomainCheckBypass.run(sslParameters);
+            client.sslParameters(sslParameters);
+        }
+    }
+
 
 }
